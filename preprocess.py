@@ -32,7 +32,7 @@ def main():
         hub.KerasLayer(module)
     ])
 
-    imagenet_labels = np.array(open('data/imagenet_labels.txt').read().splitlines())
+    imagenet_labels = np.array(open('imagenet_labels.txt').read().splitlines())
 
     height, width = hub.get_expected_image_size(module)
     image_shape = (width, height)
@@ -81,11 +81,12 @@ def main():
 
                 img.save('temp2.png')
                 img = img.resize(image_shape)
-                img = img.resize(image_shape)
 
                 os.makedirs(os.path.join(args.output_dir, dir), exist_ok=True)
 
                 img.save(os.path.join(args.output_dir, dir, file))
+
+
 
 
 if __name__ == '__main__':

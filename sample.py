@@ -32,7 +32,7 @@ def main():
         hub.KerasLayer(module)
     ])
 
-    imagenet_labels = np.array(open('data/imagenet_labels.txt').read().splitlines())
+    imagenet_labels = np.array(open('imagenet_labels.txt').read().splitlines())
 
     height, width = hub.get_expected_image_size(module)
     image_shape = (width, height)
@@ -40,6 +40,7 @@ def main():
 
     output_dir_p = os.path.join(args.output_dir, 'p')
     output_dir_n = os.path.join(args.output_dir, 'n')
+
 
     for dir in os.listdir(args.input_dir):
         output_path_list = []
@@ -81,8 +82,6 @@ def main():
             print(predicted_class)
 
             predicted_class_name = imagenet_labels[predicted_class]
-
-            predicted_class_name = imagenet_labels[predicted_class]
             print(predicted_class_name)
 
             for path, cls, cls_name in zip(output_path_list, predicted_class, predicted_class_name):
@@ -95,6 +94,7 @@ def main():
 
                 os.makedirs(os.path.split(output_path)[0], exist_ok=True)
                 shutil.copyfile(os.path.join(args.input_dir, path), output_path)
+
 
 
 if __name__ == '__main__':
