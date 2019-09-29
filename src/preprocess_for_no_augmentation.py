@@ -5,6 +5,9 @@ import glob
 import os
 
 
+PATH_SOURCE = '/Volumes/SD/deeplearning/data/fish/integration'
+PATH_NP = '/Volumes/SD/deeplearning/data/fish/np/'
+
 def find_folders(path):
     folders = []
 
@@ -39,16 +42,15 @@ def load_and_save(path, labels, count, target_size):
             x_data.append(image_array)
             y_data.append(labels.index(label))
 
-        np.save("/Volumes/SD/deeplearning/data/fish/np/" + 'x' + str(i) + "_" + str(TARGET_SIZE), x_data, allow_pickle=True)
-        np.save("/Volumes/SD/deeplearning/data/fish/np/" + 'y' + str(i) + "_" + str(TARGET_SIZE), y_data, allow_pickle=True)
+        np.save(PATH_NP + 'x' + str(i) + "_" + str(TARGET_SIZE), x_data, allow_pickle=True)
+        np.save(PATH_NP + 'y' + str(i) + "_" + str(TARGET_SIZE), y_data, allow_pickle=True)
 
 COUNT = 999
 TARGET_SIZE = 224
-PATH = '/Volumes/SD/deeplearning/data/fish/integration'
-labels = find_folders(PATH)
+labels = find_folders(PATH_SOURCE)
 
 load_and_save(PATH, labels, COUNT, TARGET_SIZE)
 
-np.save("/Volumes/SD/deeplearning/data/fish/np/l_" + str(TARGET_SIZE), labels, allow_pickle=True)
+np.save(PATH_NP + "l_" + str(TARGET_SIZE), labels, allow_pickle=True)
 
 print('completed!')
