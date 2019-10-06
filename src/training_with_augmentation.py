@@ -1,9 +1,13 @@
 from keras.preprocessing.image import ImageDataGenerator
 import tensorflow as tf
 import tensorflow_hub as hub
+import os
 
-DIR = "/data/fishid/source/integration"
-BATCH_SIZE, EPOCHS, LR, LABELS_SIZE, DECAY = 32, 30, 0.001, 50, 1e-6
+os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
+
+DIR = '/Volumes/SD/deeplearning/data/fish/integration'
+# DIR = "/data/fishid/source/integration"
+BATCH_SIZE, EPOCHS, LR, LABELS_SIZE, DECAY = 32, 50, 0.001, 50, 1e-6
 
 datagen = ImageDataGenerator(
     rescale=1./255,
